@@ -4,13 +4,12 @@ import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.c
 // CONFIGURAÇÃO DO FIREBASE
 const firebaseConfig = {
     apiKey: "AIzaSyAXQ3FhwX8KL-IQbj9j_5uQRK4qihgHvi0",
-  authDomain: "aquejada-parque-martins.firebaseapp.com",
-  projectId: "aquejada-parque-martins",
-  storageBucket: "aquejada-parque-martins.firebasestorage.app",
-  messagingSenderId: "806582025593",
-  appId: "1:806582025593:web:d8764e8f399a74426c03a8"
+    authDomain: "aquejada-parque-martins.firebaseapp.com",
+    projectId: "aquejada-parque-martins",
+    storageBucket: "aquejada-parque-martins.firebasestorage.app",
+    messagingSenderId: "806582025593",
+    appId: "1:806582025593:web:d8764e8f399a74426c03a8"
 };
-
 
 let db = null;
 
@@ -174,19 +173,20 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
     
     async function enviarWhatsApp() {
+        // Captura e validação (síncrono)
         const nome = document.getElementById("nomeVaqueiro")?.value.trim();
         const esteira = document.getElementById("nomeEsteira")?.value.trim();
         const representacao = document.getElementById("representacao")?.value.trim();
         const categoria = document.getElementById("categoria")?.value;
         const boitv = document.getElementById("boitv")?.value;
         
-        let senhaEscolhida = "";
-        let categoriaNome = "";
-        
         if (!nome) return alert("⚠️ Nome do Vaqueiro é obrigatório!");
         if (!esteira) return alert("⚠️ Nome do Esteira é obrigatório!");
         if (!categoria) return alert("⚠️ Selecione uma categoria!");
         if (!boitv) return alert("⚠️ Selecione Boi de TV!");
+        
+        let senhaEscolhida = "";
+        let categoriaNome = "";
         
         if (categoria === "Aberto") {
             senhaEscolhida = document.getElementById("senhaAberto")?.value;
@@ -210,6 +210,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             }
         }
         
+        // Monta a mensagem
         let mensagem = `🏇 *PARQUE MARTINS - VAQUEJADA* 🏇\n`;
         mensagem += `━━━━━━━━━━━━━━━━━━━━\n`;
         mensagem += `👤 *Vaqueiro:* ${nome}\n`;
@@ -224,8 +225,21 @@ document.addEventListener("DOMContentLoaded", async function() {
         const telefone = "5583999587010";
         const whatsappUrl = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
         
+        // Marca a senha como ocupada e atualiza o select localmente
         marcarSenhaComoOcupada(categoria, senhaEscolhida);
+        atualizarSelect(categoria);
         
+        // ----- ABRE O WHATSAPP IMEDIATAMENTE (antes de qualquer operação assíncrona) -----
+        // Método robusto para iOS e Android: criar um link e simular clique
+        const link = document.createElement('a');
+        link.href = whatsappUrl;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        // -----------------------------------------------------------------------------
+        
+        // Salva no Firebase (em segundo plano, sem travar a abertura)
         if (db) {
             try {
                 await addDoc(collection(db, "senhas_registradas"), {
@@ -239,12 +253,11 @@ document.addEventListener("DOMContentLoaded", async function() {
                 });
                 console.log("✅ Salvo no Firebase");
             } catch (e) {
-                console.error("Erro:", e);
+                console.error("Erro ao salvar no Firebase:", e);
             }
         }
         
-        atualizarSelect(categoria);
-        window.open(whatsappUrl, "_blank");
+        // Limpa o formulário e exibe confirmação
         limparFormulario();
         alert(`✅ Inscrição confirmada!\n📝 Senha ${senhaEscolhida} - ${categoriaNome}\n\n📱 WhatsApp aberto!`);
     }
