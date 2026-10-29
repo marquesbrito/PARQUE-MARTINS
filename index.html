@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>5ª Vaquejada da Prata - Parque Francisco Bia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="logo">
+                <i class="fas fa-horse-head"></i>
+                <span>Parque Francisco Bia</span>
+            </div>
+            <h1>🏆 5ª VAQUEJADA DA PRATA</h1>
+            <p style="font-size: 1.2rem; color: #fbbf24;"><i class="fas fa-calendar-alt"></i> 20 a 22 de Novembro de 2026</p>
+            <p><i class="fas fa-map-marker-alt"></i> Prata - PB</p>
+
+            <div class="premios-info" style="background: rgba(251,191,36,0.2); padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                <p style="text-align:center;font-size:1.1rem"><i class="fas fa-trophy"></i> <strong>MAIS DE R$ 15 MIL EM PRÊMIOS</strong></p>
+            </div>
+            <div class="premios-info" style="margin-bottom:10px;padding:15px;border-radius:12px;background:rgba(220,38,38,.2);border-left:4px solid #dc2626">
+                <p><strong>ABERTO:</strong> Moto zero + R$ 2.000,00</p>
+                <p>Senha antecipada: <strong>R$ 300,00</strong> | No dia: <strong>R$ 350,00</strong></p>
+                <p>3 bois | Numeração: <strong>1 a 500</strong></p>
+            </div>
+            <div class="premios-info" style="margin-bottom:10px;padding:15px;border-radius:12px;background:rgba(124,58,237,.2);border-left:4px solid #7c3aed">
+                <p><strong>REGIONAL:</strong> R$ 5.000,00</p>
+                <p>Senha antecipada: <strong>R$ 200,00</strong> | No dia: <strong>R$ 250,00</strong></p>
+                <p>3 bois | Numeração: <strong>501 a 1.000</strong></p>
+            </div>
+            <div class="premios-info" style="margin-bottom:10px;padding:15px;border-radius:12px;background:rgba(236,72,153,.2);border-left:4px solid #ec4899">
+                <p><strong>FEMININO / JOVEM:</strong> 40% do apurado</p>
+                <p>Senha: <strong>R$ 100,00</strong> | Numeração: <strong>1.001 a 1.500</strong></p>
+            </div>
+            <div class="premios-info" style="margin-bottom:10px;padding:15px;border-radius:12px;background:rgba(251,191,36,.14);border-left:4px solid #fbbf24">
+                <p><strong>MASTER:</strong> R$ 1.000,00 de entrada</p>
+                <p>Também concorre ao Regional | Numeração: <strong>1.501 a 2.000</strong></p>
+            </div>
+            <div class="regras-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> INFORMAÇÕES</h3>
+                <ul>
+                    <li><strong>Aberto:</strong> antecipando e tirando boi limpo, passa para o segundo rodízio da disputa.</li>
+                    <li><strong>Regional:</strong> fizer antecipado e correr na sexta, 2 bois bate a senha.</li>
+                    <li><strong>Boi de TV antecipado:</strong> R$ 20,00</li>
+                    <li><strong>Boi de TV na hora:</strong> R$ 50,00</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="form-title">
+                <h2><i class="fas fa-edit"></i> INSCRIÇÃO</h2>
+            </div>
+
+            <form id="formMatricula">
+                <div class="category">
+                    <label class="required">Nome do Vaqueiro</label>
+                    <input type="text" id="nomeVaqueiro" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="category">
+                    <label class="required">Nome do Esteira</label>
+                    <input type="text" id="nomeEsteira" placeholder="Digite o nome do esteira" required>
+                </div>
+
+                <div class="category">
+                    <label>Representação</label>
+                    <input type="text" id="representacao" placeholder="Opcional - Equipe/Patrocínio">
+                </div>
+
+                <div class="category">
+                    <label class="required">Categoria</label>
+                    <select id="categoria" required>
+                        <option value="">Selecione</option>
+                        <option value="Aberta">🏆 Aberto - R$ 300 antecipada / R$ 350 no dia</option>
+                        <option value="Regional">⭐ Regional - R$ 200 antecipada / R$ 250 no dia</option>
+                        <option value="FemininoJovem">👧 Feminino / Jovem - R$ 100</option>
+                        <option value="Master">🏅 Master - R$ 1.000</option>
+                    </select>
+                </div>
+
+                <div class="category">
+                    <label class="required">Tipo de Inscrição</label>
+                    <select id="tipoInscricao" required>
+                        <option value="">Selecione</option>
+                        <option value="Antecipada">✅ Antecipada</option>
+                        <option value="NoDia">⏰ No Dia</option>
+                    </select>
+                </div>
+
+                <!-- BOI TV - SEMPRE VISÍVEL PARA AMBAS OPÇÕES -->
+                <div class="category" id="boxBoitv">
+                    <label class="required">Boi de TV</label>
+                    <select id="boitv" required>
+                        <option value="">Selecione</option>
+                        <option value="Nao">❌ Não</option>
+                        <option value="Antecipado">✅ Antecipado - R$ 20,00</option>
+                        <option value="NaHora">⏰ Na Hora - R$ 50,00</option>
+                    </select>
+                </div>
+
+                <!-- REMOVIDO: Rabo da Gata -->
+
+                <div class="contador-senhas">
+                    <p><strong>📊 Senhas disponíveis:</strong></p>
+                    <div id="contadorDinamico">Selecione a categoria</div>
+                </div>
+
+                <div class="category hidden" id="boxSenha">
+                    <label class="required">Número da Senha</label>
+                    <select id="senha">
+                        <option value="">Selecione a senha</option>
+                    </select>
+                </div>
+
+                <div class="valor-total">
+                    <p><strong>💰 Valor Total:</strong> <span id="valorTotal">R$ 0,00</span></p>
+                </div>
+
+                <div class="aviso-limite">
+                    <p>📞 Informações: (83) 99677-6029 / (83) 99802-4360</p>
+                </div>
+
+                <button type="button" id="enviar" class="btn">
+                    <i class="fab fa-whatsapp"></i> Enviar Inscrição via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🏆 5ª VAQUEJADA DA PRATA - PARQUE FRANCISCO BIA</p>
+        <p>Desenvolvido pela UniTech - Todos os Direitos Reservados<br>📱 (83) 99972-4047</p>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
